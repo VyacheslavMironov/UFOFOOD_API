@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Domain\Services\MenuCategoryServices;
 use App\Domain\Services\MenuCategoryValidationServices;
 use App\DTO\MenuCategory\CreateMenuCategoryDTO;
+use App\DTO\MenuCategory\DeleteMenuCategoryDTO;
 
 
 class MenuCategoryController extends Controller
@@ -24,5 +25,23 @@ class MenuCategoryController extends Controller
         return $service->actionCreate(
             new CreateMenuCategoryDTO($request->Title)
         );
+    }
+
+    /**
+     * Delete a resource in storage.
+    */
+    public function delete(int $category_id, MenuCategoryServices $service)
+    {
+        return $service->actionDelete(
+            new DeleteMenuCategoryDTO($category_id)
+        );
+    }
+
+    /**
+     * All a resource in storage.
+    */
+    public function all(MenuCategoryServices $service)
+    {
+        return $service->actionAll();
     }
 }

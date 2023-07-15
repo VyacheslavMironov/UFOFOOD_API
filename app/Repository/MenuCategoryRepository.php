@@ -2,6 +2,7 @@
 namespace App\Repository;
 
 use App\DTO\MenuCategory\CreateMenuCategoryDTO;
+use App\DTO\MenuCategory\DeleteMenuCategoryDTO;
 use App\Domain\IRepository\IMenuCategoryRepository;
 use App\Models\MenuCategory;
 
@@ -14,5 +15,17 @@ class MenuCategoryRepository implements IMenuCategoryRepository
         $model->Title = $context->Title;
         $model->save();
         return $model;
+    }
+
+    public function Delete(DeleteMenuCategoryDTO $context)
+    {
+        $model = MenuCategory::find($context->id);
+        $model->delete();
+        return $model;
+    }
+
+    public function All()
+    {
+        return MenuCategory::latest()->get();
     }
 }

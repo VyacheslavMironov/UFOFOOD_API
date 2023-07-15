@@ -20,4 +20,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('menu')->group(function () {
     Route::post('category/create', [\App\Http\Controllers\Api\MenuCategoryController::class, 'create']);
+    Route::get('category/delete/{caegory_id}', [\App\Http\Controllers\Api\MenuCategoryController::class, 'delete']);
+    Route::get('category', [\App\Http\Controllers\Api\MenuCategoryController::class, 'all']);
 });
