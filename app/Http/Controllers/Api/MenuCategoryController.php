@@ -32,9 +32,11 @@ class MenuCategoryController extends Controller
     */
     public function delete(int $category_id, MenuCategoryServices $service)
     {
-        return $service->actionDelete(
-            new DeleteMenuCategoryDTO($category_id)
-        );
+        return response()->json([
+            "response" => $service->actionDelete(
+                new DeleteMenuCategoryDTO($category_id)
+            )
+        ]);
     }
 
     /**
@@ -42,6 +44,8 @@ class MenuCategoryController extends Controller
     */
     public function all(MenuCategoryServices $service)
     {
-        return $service->actionAll();
+        return response()->json([
+            "response" => $service->actionAll()
+        ]);
     }
 }

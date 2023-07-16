@@ -25,17 +25,19 @@ class MenuController extends Controller
         {
             return $is_valid;
         }
-        return $service->actionCreate(
-            new CreateMenuDTO(
-                $request->CategoryId,
-                $request->Title,
-                $request->Description,
-                $request->file('Image')
-                    ->store('uploads', 'public'),
-                $request->Price,
-                null
+        return response()->json([
+            "response" => $service->actionCreate(
+                new CreateMenuDTO(
+                    $request->CategoryId,
+                    $request->Title,
+                    $request->Description,
+                    $request->file('Image')
+                        ->store('uploads', 'public'),
+                    $request->Price,
+                    null
+                )
             )
-        );
+        ]);
     }
 
     /**
@@ -43,9 +45,11 @@ class MenuController extends Controller
     */
     public function showToCategory(int $menu_category_id, MenuServices $service)
     {
-        return $service->actionShowToCategory(
-            new ShowToCategoryDTO($menu_category_id)
-        );
+        return response()->json([
+            "response" => $service->actionShowToCategory(
+                new ShowToCategoryDTO($menu_category_id)
+            )
+        ]);
     }
 
     /**
@@ -53,9 +57,11 @@ class MenuController extends Controller
     */
     public function show(int $menu_id, MenuServices $service)
     {
-        return $service->actionShow(
-            new ShowMenuDTO($menu_id)
-        );
+        return response()->json([
+            "response" => $service->actionShow(
+                new ShowMenuDTO($menu_id)
+            )
+        ]);
     }
 
     /**
@@ -63,7 +69,9 @@ class MenuController extends Controller
     */
     public function all(MenuServices $service)
     {
-        return $service->actionAll();
+        return response()->json([
+            "response" => $service->actionAll()
+        ]);
     }
 
     /**
@@ -78,18 +86,20 @@ class MenuController extends Controller
             return $is_valid;
         }
 
-        return $service->actionUpdate(
-            new UpdateMenuDTO(
-                $request->id,
-                $request->CategoryId,
-                $request->Title,
-                $request->Description,
-                $request->file('Image')
-                    ->store('uploads', 'public'),
-                $request->Price,
-                null
+        return response()->json([
+            "response" => $service->actionUpdate(
+                new UpdateMenuDTO(
+                    $request->id,
+                    $request->CategoryId,
+                    $request->Title,
+                    $request->Description,
+                    $request->file('Image')
+                        ->store('uploads', 'public'),
+                    $request->Price,
+                    null
+                )
             )
-        );
+        ]);
     }
 
     /**
@@ -97,8 +107,10 @@ class MenuController extends Controller
     */
     public function delete(int $menu_id, MenuServices $service)
     {
-        return $service->actionDelete(
-            new DeleteMenuDTO($menu_id)
-        );
+        return response()->json([
+            "response" => $service->actionDelete(
+                new DeleteMenuDTO($menu_id)
+            )
+        ]);
     }
 }
