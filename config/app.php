@@ -169,7 +169,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\MenuCategoryValidationServiceProvider::class,
-        App\Providers\MenuCategoryServiceProvider::class
+        App\Providers\MenuCategoryServiceProvider::class,
+        App\Providers\MenuServiceProvider::class,
+        App\Providers\MenuValidationServiceProvider::class,
     ])->toArray(),
 
     /*

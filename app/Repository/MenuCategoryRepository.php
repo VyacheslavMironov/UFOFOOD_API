@@ -3,6 +3,7 @@ namespace App\Repository;
 
 use App\DTO\MenuCategory\CreateMenuCategoryDTO;
 use App\DTO\MenuCategory\DeleteMenuCategoryDTO;
+use App\DTO\MenuCategory\ShowMenuCategoryDTO;
 use App\Domain\IRepository\IMenuCategoryRepository;
 use App\Models\MenuCategory;
 
@@ -28,4 +29,9 @@ class MenuCategoryRepository implements IMenuCategoryRepository
     {
         return MenuCategory::latest()->get();
     }
+
+    public function Show(ShowMenuCategoryDTO $context)
+    {
+        return MenuCategory::find($context->id) ? true : false;
+    }    
 }
