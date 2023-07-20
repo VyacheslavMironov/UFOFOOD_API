@@ -21,7 +21,7 @@ class UserServices implements IUserServices
         $this->characters = '0123456789abcde0123456789fghijklm0123456789nopq0123456789rstuvwxy0123456789zABCDEFGHIJKLMNOP0123456789QRSTUV0123456789WXYZ';
     }
 
-    private function generateRandomString($length = 6) {
+    public function generateRandomString($length = 6) {
         $charactersLength = strlen($this->characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {

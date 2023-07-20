@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('Phone')
                 ->unique();
             $table->string('Code')
-                ->unique();
+                ->unique()
+                ->nullable(true);
             $table->rememberToken();
             $table->timestamps();
         });
