@@ -18,9 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'FirstName',
+        'LastName',
+        'Phone',
+        'Code',
     ];
 
     /**
@@ -29,7 +30,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
+        'Code',
         'remember_token',
     ];
 
@@ -39,7 +41,19 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'email_verified_at' => 'datetime',
+        // 'password' => 'hashed',
+        'Code' => 'hashed',
     ];
+
+    static function createBearerTocken($user)
+    {
+        $user->tokens()->delete();
+        return $user->createToken('user_token')->plainTextToken;
+    }
+
+    static function deleteBearerTocken($user)
+    {
+        return $user->tokens()->delete();
+    }
 }

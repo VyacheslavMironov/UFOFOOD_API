@@ -29,3 +29,11 @@ Route::prefix('menu')->group(function () {
     Route::get('/', [\App\Http\Controllers\Api\MenuController::class, 'all']);
     Route::get('delete/{menu_id}', [\App\Http\Controllers\Api\MenuController::class, 'delete']);
 });
+
+Route::prefix('user')->group(function () {
+    Route::post('code', [\App\Http\Controllers\Api\UserController::class, 'code']);
+    Route::post('create', [\App\Http\Controllers\Api\UserController::class, 'create']);
+    Route::post('auth', [\App\Http\Controllers\Api\UserController::class, 'auth']);
+    Route::get('show/by/phone/{phone}', [\App\Http\Controllers\Api\UserController::class, 'showByPhone']);
+    Route::post('update', [\App\Http\Controllers\Api\UserController::class, 'update']);
+});

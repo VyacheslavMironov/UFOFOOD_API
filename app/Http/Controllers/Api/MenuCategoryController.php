@@ -22,9 +22,11 @@ class MenuCategoryController extends Controller
         {
             return $is_valid;
         }
-        return $service->actionCreate(
-            new CreateMenuCategoryDTO($request->Title)
-        );
+        return response()->json([
+            "response" => $service->actionCreate(
+                new CreateMenuCategoryDTO($request->Title)
+            )
+        ]);
     }
 
     /**
