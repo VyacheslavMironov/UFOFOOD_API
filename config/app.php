@@ -172,6 +172,8 @@ return [
         App\Providers\MenuCategoryServiceProvider::class,
         App\Providers\MenuServiceProvider::class,
         App\Providers\MenuValidationServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
+        App\Providers\IngridientServiceProvider::class,
     ])->toArray(),
 
     /*

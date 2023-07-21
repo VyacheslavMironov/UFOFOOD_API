@@ -18,16 +18,22 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('menu')->group(function () {
-    Route::post('category/create', [\App\Http\Controllers\Api\MenuCategoryController::class, 'create']);
-    Route::get('category/delete/{caegory_id}', [\App\Http\Controllers\Api\MenuCategoryController::class, 'delete']);
     Route::get('category', [\App\Http\Controllers\Api\MenuCategoryController::class, 'all']);
-
-    Route::post('create', [\App\Http\Controllers\Api\MenuController::class, 'create']);
-    Route::post('update', [\App\Http\Controllers\Api\MenuController::class, 'update']);
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::post('category/create', [\App\Http\Controllers\Api\MenuCategoryController::class, 'create']);
+        Route::get('category/delete/{caegory_id}', [\App\Http\Controllers\Api\MenuCategoryController::class, 'delete']);
+    });
+    
     Route::get('show/to/category/{menu_category_id}', [\App\Http\Controllers\Api\MenuController::class, 'showToCategory']);
     Route::get('show/{menu_id}', [\App\Http\Controllers\Api\MenuController::class, 'show']);
     Route::get('/', [\App\Http\Controllers\Api\MenuController::class, 'all']);
-    Route::get('delete/{menu_id}', [\App\Http\Controllers\Api\MenuController::class, 'delete']);
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::post('create', [\App\Http\Controllers\Api\MenuController::class, 'create']);
+        Route::post('update', [\App\Http\Controllers\Api\MenuController::class, 'update']);
+        Route::get('delete/{menu_id}', [\App\Http\Controllers\Api\MenuController::class, 'delete']);
+    });
 });
 
 Route::prefix('user')->group(function () {
@@ -35,5 +41,17 @@ Route::prefix('user')->group(function () {
     Route::post('create', [\App\Http\Controllers\Api\UserController::class, 'create']);
     Route::post('auth', [\App\Http\Controllers\Api\UserController::class, 'auth']);
     Route::get('show/by/phone/{phone}', [\App\Http\Controllers\Api\UserController::class, 'showByPhone']);
-    Route::post('update', [\App\Http\Controllers\Api\UserController::class, 'update']);
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::post('update', [\App\Http\Controllers\Api\UserController::class, 'update']);
+    });
+});
+
+Route::prefix('ingridient')->group(function () {
+    Route::get('all', [\App\Http\Controllers\Api\IngridientController::class, 'all']);
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::post('create', [\App\Http\Controllers\Api\IngridientController::class, 'create']);
+        Route::get('delete/{ingridient_id}', [\App\Http\Controllers\Api\IngridientController::class, 'delete']);
+    });
 });
