@@ -1,14 +1,15 @@
 <?php
 namespace App\Domain\Services;
 
-use Illuminate\Http\Request;
 use App\Domain\IServices\IUserServices;
 use App\DTO\User\CreateUserDTO;
 use App\DTO\User\AuthUserDTO;
 use App\DTO\User\ShowByPhoneUserDTO;
 use App\DTO\User\UpdateUserDTO;
 use App\DTO\User\CodeUserDTO;
+use App\DTO\PushUserSession\CreatePushUserSessionDTO;
 use App\Repository\UserRepository;
+use App\Domain\Services\PushUserSessionServices;
 
 
 class UserServices implements IUserServices
@@ -48,6 +49,14 @@ class UserServices implements IUserServices
     {
         $user = $this->repository->Create($context);
         // Отправка кода по СМС
+        // Авто включение пуш нотификаций
+        $push = new PushUserSessionServices();
+        $push->CreateAction(
+            new CreatePushUserSessionDTO(
+                $user->id,
+                true
+            )
+        );
         return $user;
     }
 
