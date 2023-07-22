@@ -65,3 +65,14 @@ Route::prefix('basket')->group(function () {
         Route::post('count/update/{basket_id}/{count}', [\App\Http\Controllers\Api\BasketController::class, 'countUpdate']);
     });
 });
+
+Route::prefix('purchases')->group(function () {
+    Route::prefix('history')->group(function () {
+        // Запросы с персональным токеном
+        Route::middleware('auth:sanctum')->group(function (){
+            Route::post('create', [\App\Http\Controllers\Api\PurchasesHistoryController::class, 'create']);
+            Route::get('show/code/{order_code}', [\App\Http\Controllers\Api\PurchasesHistoryController::class, 'show']);
+            Route::get('all/{user_id?}', [\App\Http\Controllers\Api\PurchasesHistoryController::class, 'all']);
+        });
+    });
+});
