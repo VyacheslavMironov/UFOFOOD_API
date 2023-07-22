@@ -16,7 +16,7 @@ class IngridientController extends Controller
     public function create(Request $request, IngridientServices $service)
     {
         return response()->json([
-             $service->actionCreate(
+            "response" => $service->actionCreate(
                 new CreateIngridientDTO(
                     $request->CategoryId,
                     $request->Title
@@ -31,7 +31,7 @@ class IngridientController extends Controller
     public function delete(int $ingridient_id, IngridientServices $service)
     {
         return response()->json([
-            $service->actionDelete(
+            "response" => $service->actionDelete(
                 new DeleteIngridientDTO(
                     $ingridient_id
                 )
@@ -45,7 +45,7 @@ class IngridientController extends Controller
     public function all(IngridientServices $service)
     {
         return response()->json([
-            $service->actionAll()
+            "response" => $service->actionAll()
         ]);
     }
 }
