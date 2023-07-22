@@ -55,3 +55,13 @@ Route::prefix('ingridient')->group(function () {
         Route::get('delete/{ingridient_id}', [\App\Http\Controllers\Api\IngridientController::class, 'delete']);
     });
 });
+
+Route::prefix('basket')->group(function () {
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::post('create', [\App\Http\Controllers\Api\BasketController::class, 'create']);
+        Route::get('delete/{basket_id}', [\App\Http\Controllers\Api\BasketController::class, 'delete']);
+        Route::get('all', [\App\Http\Controllers\Api\BasketController::class, 'all']);
+        Route::post('count/update/{basket_id}/{count}', [\App\Http\Controllers\Api\BasketController::class, 'countUpdate']);
+    });
+});
