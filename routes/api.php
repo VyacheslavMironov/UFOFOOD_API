@@ -76,3 +76,20 @@ Route::prefix('purchases')->group(function () {
         });
     });
 });
+
+Route::prefix('notification')->group(function () {
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::post('create', [\App\Http\Controllers\Api\NotificationController::class, 'create']);
+        Route::get('show/{notification_id}', [\App\Http\Controllers\Api\NotificationController::class, 'show']);
+        Route::get('all', [\App\Http\Controllers\Api\NotificationController::class, 'all']);
+        Route::post('update', [\App\Http\Controllers\Api\NotificationController::class, 'update']);
+        Route::get('delete/{notification_id}', [\App\Http\Controllers\Api\NotificationController::class, 'delete']);
+    });
+});
+
+
+// Запросы с персональным токеном
+Route::middleware('auth:sanctum')->group(function (){
+    Route::post('push', [\App\Http\Controllers\Api\NotificationController::class, 'push']);
+});

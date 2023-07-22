@@ -174,6 +174,7 @@ return [
         App\Providers\MenuValidationServiceProvider::class,
         App\Providers\UserServiceProvider::class,
         App\Providers\IngridientServiceProvider::class,
+        App\Providers\NotificationServiceProvider::class,
     ])->toArray(),
 
     /*
