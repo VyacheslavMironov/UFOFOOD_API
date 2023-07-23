@@ -20,7 +20,9 @@ class MenuCategoryController extends Controller
         $is_valid = $validation->CreateActionValidate($request);
         if (key_exists('errors', $is_valid))
         {
-            return $is_valid;
+            return response()->json([
+                "response" =>  $is_valid
+            ]);
         }
         return response()->json([
             "response" => $service->actionCreate(

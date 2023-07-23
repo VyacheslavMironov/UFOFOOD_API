@@ -13,29 +13,35 @@ class PushUserSessionController extends Controller
 {
     public function create(Request $request, PushUserSessionServices $service)
     {
-        return $service->CreateAction(
-            new CreatePushUserSessionDTO(
-                $request->UserId,
-                $request->Value
+        return response()->json([
+            "response" => $service->CreateAction(
+                new CreatePushUserSessionDTO(
+                    $request->UserId,
+                    $request->Value
+                )
             )
-        );
+        ]);
     }
 
     public function show(int $user_id, PushUserSessionServices $service)
     {
-        return $service->ShowAction(
-            new ShowPushUserSessionDTO($user_id)
-        );
+        return response()->json([
+            "response" => $service->ShowAction(
+                new ShowPushUserSessionDTO($user_id)
+            )
+        ]);
     }
 
     public function update(Request $request, PushUserSessionServices $service)
     {
-        return $service->UpdateAction(
-            new UpdatePushUserSessionDTO(
-                $request->Id,
-                $request->UserId,
-                $request->Value
+        return response()->json([
+            "response" => $service->UpdateAction(
+                new UpdatePushUserSessionDTO(
+                    $request->Id,
+                    $request->UserId,
+                    $request->Value
+                )
             )
-        );
+        ]);
     }
 }

@@ -14,43 +14,53 @@ class NotificationController extends Controller
 {
     public function create(Request $request, NotificationServices $service)
     {
-        return $service->CreateAction(
-            new CreateNotificationDTO(
-                $request->Title,
-                $request->Description ? $request->Description : null,
-                $request->file('Image') ? $request->file('Image')->store('uploads', 'public') : null
+        return response()->json([
+            "response" => $service->CreateAction(
+                new CreateNotificationDTO(
+                    $request->Title,
+                    $request->Description ? $request->Description : null,
+                    $request->file('Image') ? $request->file('Image')->store('uploads', 'public') : null
+                )
             )
-        );
+        ]);
     }
 
     public function show(int $notification_id, NotificationServices $service)
     {
-        return $service->ShowAction(
-            new ShowNotificationDTO($notification_id)
-        );
+        return response()->json([
+            "response" => $service->ShowAction(
+                new ShowNotificationDTO($notification_id)
+            )
+        ]);
     }
 
     public function all(NotificationServices $service)
     {
-        return $service->AllAction();
+        return response()->json([
+            "response" => $service->AllAction()
+        ]);
     }
     
     public function update(Request $request, NotificationServices $service)
     {
-        return $service->UpdateAction(
-            new UpdateNotificationDTO(
-                $request->Id,
-                $request->Title,
-                $request->Description ? $request->Description : null,
-                $request->file('Image') ? $request->file('Image')->store('uploads', 'public') : null
+        return response()->json([
+            "response" => $service->UpdateAction(
+                new UpdateNotificationDTO(
+                    $request->Id,
+                    $request->Title,
+                    $request->Description ? $request->Description : null,
+                    $request->file('Image') ? $request->file('Image')->store('uploads', 'public') : null
+                )
             )
-        );
+        ]);
     }
 
     public function delete(int $notification_id, NotificationServices $service)
     {
-        return $service->DeleteAction(
-            new DeleteNotificationDTO($notification_id)
-        );
+        return response()->json([
+            "response" => $service->DeleteAction(
+                new DeleteNotificationDTO($notification_id)
+            )
+        ]);
     }
 }

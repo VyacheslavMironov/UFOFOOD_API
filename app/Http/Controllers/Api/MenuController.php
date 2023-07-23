@@ -83,7 +83,9 @@ class MenuController extends Controller
 
         if (key_exists('errors', $is_valid))
         {
-            return $is_valid;
+            return response()->json([
+                "response" =>  $is_valid
+            ]);
         }
 
         return response()->json([

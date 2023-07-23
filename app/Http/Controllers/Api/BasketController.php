@@ -25,23 +25,29 @@ class BasketController extends Controller
 
     public function all(Request $request, BasketServices $service)
     {
-        return $service->actionAll();
+        return response()->json([
+            "response" => $service->actionAll()
+        ]);
     }
 
     public function delete(int $basket_id, BasketServices $service)
     {
-        return $service->actionDelete(
-            new DeleteBasketDTO($basket_id)
-        );
+        return response()->json([
+            "response" => $service->actionDelete(
+                new DeleteBasketDTO($basket_id)
+            )
+        ]);
     }
 
     public function countUpdate(int $basket_id, int $count, BasketServices $service)
     {
-        return $service->actionCountUpdate(
-            new CountUpdateBasketDTO(
-                $basket_id,
-                $count
+        return response()->json([
+            "response" => $service->actionCountUpdate(
+                new CountUpdateBasketDTO(
+                    $basket_id,
+                    $count
+                )
             )
-        );
+        ]);
     }
 }
