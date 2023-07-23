@@ -13,7 +13,7 @@ class IngridientValidationService implements IIngridientValidationService
     */
     public const INGRIDIENT_VALIDATOR = [
         "CategoryId" => "required",
-        "Title" => "required|min:4|max:180",
+        "Title" => "required|min:2|max:60",
     ];
     
     public const INGRIDIENT_ERROR_MESSAGE = [
