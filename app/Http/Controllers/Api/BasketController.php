@@ -21,14 +21,16 @@ class BasketController extends Controller
                 "response" =>  $is_valid
             ]);
         }
-        return $service->actionCreate(
-            new CreateBasketDTO(
-                $request->UserId,
-                $request->MenuId,
-                $request->Price,
-                $request->Count
+        return response()->json([
+            "response" => $service->actionCreate(
+                new CreateBasketDTO(
+                    $request->UserId,
+                    $request->MenuId,
+                    $request->Price,
+                    $request->Count
+                )
             )
-        );
+        ]);
     }
 
     public function all(Request $request, BasketServices $service)

@@ -62,7 +62,7 @@ Route::prefix('basket')->group(function () {
         Route::post('create', [\App\Http\Controllers\Api\BasketController::class, 'create']);
         Route::get('delete/{basket_id}', [\App\Http\Controllers\Api\BasketController::class, 'delete']);
         Route::get('all', [\App\Http\Controllers\Api\BasketController::class, 'all']);
-        Route::post('count/update/{basket_id}/{count}', [\App\Http\Controllers\Api\BasketController::class, 'countUpdate']);
+        Route::get('count/update/{basket_id}/{count}', [\App\Http\Controllers\Api\BasketController::class, 'countUpdate']);
     });
 });
 
@@ -86,11 +86,12 @@ Route::prefix('notification')->group(function () {
         Route::post('update', [\App\Http\Controllers\Api\NotificationController::class, 'update']);
         Route::get('delete/{notification_id}', [\App\Http\Controllers\Api\NotificationController::class, 'delete']);
     });
-    Route::prefix('push')->group(function () {
-        // Запросы с персональным токеном
-        Route::middleware('auth:sanctum')->group(function (){
-            Route::get('show/{user_id}', [\App\Http\Controllers\Api\NotificationController::class, 'show']);
-            Route::post('update', [\App\Http\Controllers\Api\NotificationController::class, 'update']);
-        });
+});
+
+Route::prefix('push')->group(function () {
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::get('show/{user_id}', [\App\Http\Controllers\Api\PushUserSessionController::class, 'show']);
+        Route::post('update', [\App\Http\Controllers\Api\PushUserSessionController::class, 'update']);
     });
 });

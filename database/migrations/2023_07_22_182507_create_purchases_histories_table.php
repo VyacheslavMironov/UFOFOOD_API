@@ -17,8 +17,8 @@ return new class extends Migration
             $table->char('OrderCode')->unique();
             $table->float('Price');
             $table->jsonb('Values');
-            $table->date('SetDate');
-            $table->time('SetTime');
+            $table->string('SetDate');
+            $table->string('SetTime');
             $table->timestamps();
             $table->foreign('UserId')
                 ->references('id')

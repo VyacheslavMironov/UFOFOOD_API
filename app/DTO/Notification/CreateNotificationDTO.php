@@ -7,7 +7,7 @@ final class CreateNotificationDTO
     public string|null $Description;
     public string|null $Image;
 
-    public function __construct(string $Title, string|null $Description, string $Image)
+    public function __construct(string $Title, string|null $Description, string|null $Image)
     {
         $this->Title = $Title;
         $this->Description = $Description;

@@ -8,7 +8,7 @@ final class UpdateNotificationDTO
     public string|null $Description;
     public string|null $Image;
 
-    public function __construct(int $Id, string $Title, string|null $Description, string $Image)
+    public function __construct(int $Id, string $Title, string|null $Description, string|null $Image)
     {
         $this->Id = $Id;
         $this->Title = $Title;

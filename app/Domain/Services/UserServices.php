@@ -54,7 +54,7 @@ class UserServices implements IUserServices
         $push->CreateAction(
             new CreatePushUserSessionDTO(
                 $user->id,
-                true
+                'ok'
             )
         );
         return $user;

@@ -27,7 +27,7 @@ class NotificationController extends Controller
                 new CreateNotificationDTO(
                     $request->Title,
                     $request->Description ? $request->Description : null,
-                    $request->file('Image') ? $request->file('Image')->store('uploads', 'public') : null
+                    $request->Image ? $request->file('Image')->store('uploads', 'public') : null
                 )
             )
         ]);
