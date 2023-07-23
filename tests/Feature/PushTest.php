@@ -33,12 +33,12 @@ class PushTest extends TestCase
         $data = $service->CreateAction(
             new CreatePushUserSessionDTO(
                 $dataUser->id,
-                true
+                'ok'
             )
         );
 
         $this->assertNotNull($data);
-        $this->assertEquals($data->Value, true);
+        $this->assertEquals($data->Value, 'ok');
     }
 
     /**
@@ -59,12 +59,12 @@ class PushTest extends TestCase
         $dataCreate = $service->CreateAction(
             new CreatePushUserSessionDTO(
                 $dataUser->id,
-                true
+                'ok'
             )
         );
 
         $this->assertNotNull($dataCreate);
-        $this->assertEquals($dataCreate->Value, true);
+        $this->assertEquals($dataCreate->Value, 'ok');
 
         $data = $service->ShowAction(
             new ShowPushUserSessionDTO($dataUser->id)
@@ -91,7 +91,7 @@ class PushTest extends TestCase
         $dataCreate = $service->CreateAction(
             new CreatePushUserSessionDTO(
                 $dataUser->id,
-                true
+                'ok'
             )
         );
 
@@ -102,11 +102,11 @@ class PushTest extends TestCase
             new UpdatePushUserSessionDTO(
                 $dataCreate->id,
                 $dataUser->id,
-                false
+                'off'
             )
         );
 
         $this->assertNotNull($data);
-        $this->assertEquals($data->Value, false);
+        $this->assertEquals($data->Value, 'off');
     }
 }

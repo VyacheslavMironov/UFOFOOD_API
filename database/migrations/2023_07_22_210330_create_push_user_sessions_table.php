@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('push_user_sessions', function (Blueprint $table) {
             $table->id();
             $table->integer('UserId');
-            $table->enum('Value', [true, false]);
+            $table->string('Value');
             $table->timestamps();
             $table->foreign('UserId')
                 ->references('id')

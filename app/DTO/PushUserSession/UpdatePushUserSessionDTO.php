@@ -5,9 +5,9 @@ final class UpdatePushUserSessionDTO
 {
     public int $Id;
     public int $UserId;
-    public bool $Value;
+    public string $Value;
 
-    public function __construct(int $Id, int $UserId, bool $Value)
+    public function __construct(int $Id, int $UserId, string $Value)
     {
         $this->Id = $Id;
         $this->UserId = $UserId;
