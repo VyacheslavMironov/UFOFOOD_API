@@ -175,6 +175,11 @@ return [
         App\Providers\UserServiceProvider::class,
         App\Providers\IngridientServiceProvider::class,
         App\Providers\NotificationServiceProvider::class,
+        App\Providers\IngridientValidationServiceProvider::class,
+        App\Providers\BasketValidationServiceProvider::class,
+        App\Providers\PurchasesHistoryValidationServiceProvider::class,
+        App\Providers\NotificationValidationServiceProvider::class,
+        App\Providers\PushUserSessionValidationServiceProvider::class,
     ])->toArray(),
 
     /*

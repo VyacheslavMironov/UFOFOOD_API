@@ -8,11 +8,19 @@ use App\Domain\Services\BasketServices;
 use App\DTO\Basket\CreateBasketDTO;
 use App\DTO\Basket\DeleteBasketDTO;
 use App\DTO\Basket\CountUpdateBasketDTO;
+use App\Domain\Services\BasketValidationServices;
 
 class BasketController extends Controller
 {
-    public function create(Request $request, BasketServices $service)
+    public function create(Request $request, BasketServices $service, BasketValidationServices $validation)
     {
+        $is_valid = $validation->CreateActionValidate($request);
+        if (key_exists('errors', $is_valid))
+        {
+            return response()->json([
+                "response" =>  $is_valid
+            ]);
+        }
         return $service->actionCreate(
             new CreateBasketDTO(
                 $request->UserId,
@@ -39,7 +47,7 @@ class BasketController extends Controller
         ]);
     }
 
-    public function countUpdate(int $basket_id, int $count, BasketServices $service)
+    public function countUpdate(int $basket_id, int $count, BasketServices $service, BasketValidationServices $validation)
     {
         return response()->json([
             "response" => $service->actionCountUpdate(

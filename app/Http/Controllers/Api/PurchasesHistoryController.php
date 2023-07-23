@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 use App\DTO\PurchasesHistory\CreatePurchasesHistoryDTO;
 use App\DTO\PurchasesHistory\ShowByUserPurchasesHistoryDTO;
 use App\DTO\PurchasesHistory\ShowPurchasesHistoryDTO;
+use App\Domain\Services\PurchasesHistoryValidationServices;
 
 class PurchasesHistoryController extends Controller
 {
-    public function create(Request $request, PurchasesHistoryServices $srvice)
+    public function create(Request $request, PurchasesHistoryServices $srvice, PurchasesHistoryValidationServices $validation)
     {
+        $is_valid = $validation->CreateActionValidate($request);
+        if (key_exists('errors', $is_valid))
+        {
+            return response()->json([
+                "response" =>  $is_valid
+            ]);
+        }
         return response()->json([
             "response" => $srvice->CreateAction(
                 new CreatePurchasesHistoryDTO(

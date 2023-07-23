@@ -8,6 +8,7 @@ use App\Domain\Services\PushUserSessionServices;
 use App\DTO\PushUserSession\CreatePushUserSessionDTO;
 use App\DTO\PushUserSession\ShowPushUserSessionDTO;
 use App\DTO\PushUserSession\UpdatePushUserSessionDTO;
+use App\Domain\Services\PushUserSessionValidationServices;
 
 class PushUserSessionController extends Controller
 {
@@ -32,8 +33,15 @@ class PushUserSessionController extends Controller
         ]);
     }
 
-    public function update(Request $request, PushUserSessionServices $service)
+    public function update(Request $request, PushUserSessionServices $service, PushUserSessionValidationServices $validation)
     {
+        $is_valid = $validation->UpdateActionValidate($request);
+        if (key_exists('errors', $is_valid))
+        {
+            return response()->json([
+                "response" =>  $is_valid
+            ]);
+        }
         return response()->json([
             "response" => $service->UpdateAction(
                 new UpdatePushUserSessionDTO(

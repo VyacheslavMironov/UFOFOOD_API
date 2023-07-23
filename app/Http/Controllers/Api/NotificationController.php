@@ -9,11 +9,19 @@ use App\DTO\Notification\CreateNotificationDTO;
 use App\DTO\Notification\ShowNotificationDTO;
 use App\DTO\Notification\UpdateNotificationDTO;
 use App\DTO\Notification\DeleteNotificationDTO;
+use App\Domain\Services\NotificationValidationServices;
 
 class NotificationController extends Controller
 {
-    public function create(Request $request, NotificationServices $service)
+    public function create(Request $request, NotificationServices $service, NotificationValidationServices $validation)
     {
+        $is_valid = $validation->CreateActionValidate($request);
+        if (key_exists('errors', $is_valid))
+        {
+            return response()->json([
+                "response" =>  $is_valid
+            ]);
+        }
         return response()->json([
             "response" => $service->CreateAction(
                 new CreateNotificationDTO(
@@ -41,8 +49,15 @@ class NotificationController extends Controller
         ]);
     }
     
-    public function update(Request $request, NotificationServices $service)
+    public function update(Request $request, NotificationServices $service, NotificationValidationServices $validation)
     {
+        $is_valid = $validation->CreateActionValidate($request);
+        if (key_exists('errors', $is_valid))
+        {
+            return response()->json([
+                "response" =>  $is_valid
+            ]);
+        }
         return response()->json([
             "response" => $service->UpdateAction(
                 new UpdateNotificationDTO(

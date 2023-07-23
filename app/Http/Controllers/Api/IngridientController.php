@@ -7,14 +7,22 @@ use Illuminate\Http\Request;
 use App\Domain\Services\IngridientServices;
 use App\DTO\Ingridient\CreateIngridientDTO;
 use App\DTO\Ingridient\DeleteIngridientDTO;
+use App\Domain\Services\IngridientValidationService;
 
 class IngridientController extends Controller
 {
     /**
      * Create a newly created resource in storage.
     */
-    public function create(Request $request, IngridientServices $service)
+    public function create(Request $request, IngridientServices $service, IngridientValidationService $validation)
     {
+        $is_valid = $validation->CreateActionValidate($request);
+        if (key_exists('errors', $is_valid))
+        {
+            return response()->json([
+                "response" =>  $is_valid
+            ]);
+        }
         return response()->json([
             "response" => $service->actionCreate(
                 new CreateIngridientDTO(
