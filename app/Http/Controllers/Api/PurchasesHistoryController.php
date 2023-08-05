@@ -25,7 +25,7 @@ class PurchasesHistoryController extends Controller
             "response" => $srvice->CreateAction(
                 new CreatePurchasesHistoryDTO(
                     $request->UserId,
-                    $request->OrderCode,
+                    null,
                     $request->Price,
                     $request->Values, // [{'MenuId': 0, 'Count': 0}, ...]
                     date('d.m.Y'),

@@ -15,18 +15,16 @@ use App\Domain\Services\PushUserSessionServices;
 class UserServices implements IUserServices
 {
     public UserRepository $repository;
-    public string $characters;
     public function __construct()
     {
         $this->repository = new UserRepository();
-        $this->characters = '0123456789abcde0123456789fghijklm0123456789nopq0123456789rstuvwxy0123456789zABCDEFGHIJKLMNOP0123456789QRSTUV0123456789WXYZ';
     }
 
-    public function generateRandomString($length = 6) {
-        $charactersLength = strlen($this->characters);
+    public function generateRandomString($length = 6, $characters = '0123456789abcde0123456789fghijklm0123456789nopq0123456789rstuvwxy0123456789zABCDEFGHIJKLMNOP0123456789QRSTUV0123456789WXYZ') {
+        $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
-            $randomString .= $this->characters[random_int(0, $charactersLength - 1)];
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
         return $randomString;
     }

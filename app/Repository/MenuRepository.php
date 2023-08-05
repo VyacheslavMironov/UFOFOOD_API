@@ -48,9 +48,7 @@ class MenuRepository implements IMenuRepository
 
     public function Show(ShowMenuDTO $context)
     {
-        $model = Menu::find($context->id)
-            ->latest()
-            ->get();
+        $model = Menu::find($context->id);
         return $model;
     }
 
