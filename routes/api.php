@@ -24,7 +24,7 @@ Route::prefix('menu')->group(function () {
         Route::post('category/create', [\App\Http\Controllers\Api\MenuCategoryController::class, 'create']);
         Route::get('category/delete/{caegory_id}', [\App\Http\Controllers\Api\MenuCategoryController::class, 'delete']);
     });
-    
+
     Route::get('show/to/category/{menu_category_id}', [\App\Http\Controllers\Api\MenuController::class, 'showToCategory']);
     Route::get('show/{menu_id}', [\App\Http\Controllers\Api\MenuController::class, 'show']);
     Route::get('/', [\App\Http\Controllers\Api\MenuController::class, 'all']);
