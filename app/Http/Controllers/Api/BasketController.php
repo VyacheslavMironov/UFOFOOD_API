@@ -27,7 +27,8 @@ class BasketController extends Controller
                     $request->UserId,
                     $request->MenuId,
                     $request->Price,
-                    $request->Count
+                    $request->Count,
+                    $request->Values,
                 )
             )
         ]);
