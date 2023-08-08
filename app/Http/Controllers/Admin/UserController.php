@@ -9,6 +9,6 @@ class UserController extends Controller
 {
     public function login(Request $request)
     {
-        return view('login', ['form_route' => 'user.login']);
+//        return view('login', ['form_route' => 'user.login']);
     }
 }

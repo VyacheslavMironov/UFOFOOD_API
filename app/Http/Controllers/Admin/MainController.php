@@ -12,8 +12,16 @@ class MainController extends Controller
 {
     public function login(Request $request)
     {
-        return view('login', ['form_route' => 'user.login']);
+        return view('login', ['form_route' => 'user.code']);
     }
 
+    public function index()
+    {
+        return view('index');
+    }
 
+    public function profile()
+    {
+        return view('profile');
+    }
 }

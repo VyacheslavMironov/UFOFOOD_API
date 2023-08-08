@@ -17,7 +17,7 @@
         <div class="row">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="{{ route('index') }}">
                         <strong>
                             Панель администратора
                         </strong>
@@ -26,13 +26,29 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-{{--                            <li class="nav-item">--}}
-{{--                                <a class="nav-link" href="#">Link</a>--}}
-{{--                            </li>--}}
+                        <ul class="navbar-nav mx-auto d-flex justify-content-around w-50 mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('profiles.index') }}">Пользователи</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Продукция</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Заказы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Игра</a>
+                            </li>
                         </ul>
                         <div class="d-flex">
-                            <a href="#" class="btn btn-primary" type="submit">ВХОД</a>
+                            @if (session()->get('BearerTocken'))
+                                <form action="{{ route('user.post.logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">ВЫХОД</button>
+                                </form>
+                            @else
+                                <a href="{{ route('user.login') }}" class="btn btn-primary">ВХОД</a>
+                            @endif
                         </div>
                     </div>
                 </div>
