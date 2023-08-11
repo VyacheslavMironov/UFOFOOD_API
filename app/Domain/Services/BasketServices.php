@@ -25,7 +25,7 @@ class BasketServices implements IBasketServices
             $sessionBasket = session()->get("User-".$context->UserId);
             $sessionBasket["Basket"] = $context->Values;
         }
-        session()->put([
+        session([
             "Basket" => ["Basket" => $context->Values]
         ]);
         return [
