@@ -23,10 +23,10 @@ class BasketServices implements IBasketServices
         if (session()->get("Basket"))
         {
             $sessionBasket = session()->get("User-".$context->UserId);
-            $sessionBasket["Basket-".$createBasket->id] = $context->Values;
+            $sessionBasket["Basket"] = $context->Values;
         }
         session()->put([
-            "Basket" => ["Basket-".$createBasket->id => $context->Values]
+            "Basket" => ["Basket" => $context->Values]
         ]);
         return [
             "Basket" => $createBasket,

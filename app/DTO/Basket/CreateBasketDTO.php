@@ -15,6 +15,6 @@ final class CreateBasketDTO
         $this->MenuId = $MenuId;
         $this->Price = $Price;
         $this->Count = $Count;
-        $this->$Values = $Values;
+        $this->Values = $Values;
     }
 }
