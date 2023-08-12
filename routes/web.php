@@ -14,8 +14,29 @@ use App\Http\Controllers\Admin\PostUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [MainController::class, 'index'])
+    ->name('index');
+
+Route::get('/login', [MainController::class, 'login'])
+    ->name('user.login');
+
+Route::post('/user/code/', [PostUserController::class, 'newCode'])
+    ->name('user.code');
+
+Route::post('/user/login/', [PostUserController::class, 'login'])
+    ->name('user.post.login');
+
+Route::post('/user/logout/', [PostUserController::class, 'logout'])
+    ->name('user.post.logout');
+
+Route::prefix('profiles')->group(function () {
+    Route::get('/', [MainController::class, 'profile'])
+        ->name('profiles.index');
+    Route::get('/show/{id}', [MainController::class, 'show'])
+        ->name('profiles.show');
+    Route::get('/role', [MainController::class, 'profile_role'])
+        ->name('profiles.role');
+
 });
 
 Route::get('/login', [MainController::class, 'login']);

@@ -49,9 +49,11 @@ class PurchasesHistoryController extends Controller
         if ($user_id)
         {
             return response()->json([
-                "response" => $srvice->ShowByUserAction(
-                    new ShowByUserPurchasesHistoryDTO($user_id)
-                )
+                "response" => [
+                    $srvice->ShowByUserAction(
+                        new ShowByUserPurchasesHistoryDTO($user_id)
+                    )
+                ]
             ]);
         }
         else

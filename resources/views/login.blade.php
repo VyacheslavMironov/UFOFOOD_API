@@ -11,7 +11,7 @@
                         <div class="row mb-4">
                             <h3 class="text-center">Вход</h3>
                         </div>
-                        <form action="{{ route('user.code') }}" method="POST">
+                        <form action="{{ route($form_route) }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleInputTelephone" class="form-label">Введите номер телефона <b><small class="text-danger">*</small></b></label>
