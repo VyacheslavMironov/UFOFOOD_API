@@ -52,8 +52,7 @@ class PurchasesHistoryController extends Controller
                 "response" => [
                     $srvice->ShowByUserAction(
                         new ShowByUserPurchasesHistoryDTO($user_id)
-                    ),
-                    count(session()->get("Basket")) > 0 ? session()->get("Basket") : []
+                    )
                 ]
             ]);
         }

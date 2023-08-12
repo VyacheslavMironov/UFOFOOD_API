@@ -24,4 +24,9 @@ class MainController extends Controller
     {
         return view('profile');
     }
+
+    public function profile_role()
+    {
+        return view('profile_role');
+    }
 }

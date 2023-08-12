@@ -19,7 +19,7 @@
                                 <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">
-                                                <a href="#">
+                                                <a href="{{ route('profiles.index') }}">
                                                     Администраторы
                                                 </a>
                                             </div>
@@ -29,7 +29,7 @@
                                 <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                     <div class="ms-2 me-auto">
                                         <div class="fw-bold">
-                                            <a href="#">
+                                            <a href="{{ route('profiles.index') }}">
                                                 Клиенты
                                             </a>
                                         </div>
@@ -39,7 +39,7 @@
                                 <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
                                     <div class="ms-2 me-auto">
                                         <div class="fw-bold">
-                                            <a href="#">
+                                            <a href="{{ route('profiles.index') }}">
                                                 Модераторы
                                             </a>
                                         </div>

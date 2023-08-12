@@ -34,7 +34,7 @@ Route::prefix('profiles')->group(function () {
         ->name('profiles.index');
     Route::get('/show/{id}', [MainController::class, 'show'])
         ->name('profiles.show');
-    Route::get('/role', [MainController::class, 'role'])
+    Route::get('/role', [MainController::class, 'profile_role'])
         ->name('profiles.role');
 
 });
