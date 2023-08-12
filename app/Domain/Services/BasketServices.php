@@ -18,16 +18,6 @@ class BasketServices implements IBasketServices
     public function actionCreate(CreateBasketDTO $context)
     {
         $createBasket = $this->repository->Create($context);
-        $arr = array();
-        array_push($arr, $context->Values);
-        if (session()->get("Basket"))
-        {
-            $sessionBasket = session()->get("UserBasket");
-            $sessionBasket["Basket"] = $context->Values;
-        }
-        session()->put([
-            "Basket" => ["Basket" => $context->Values]
-        ]);
         return [
             "Basket" => $createBasket,
             "Ingridients" => session()->get("Basket")
