@@ -25,3 +25,16 @@ Route::post('/user/code/', [PostUserController::class, 'newCode'])
 
 Route::post('/user/login/', [PostUserController::class, 'login'])
     ->name('user.post.login');
+
+Route::post('/user/logout/', [PostUserController::class, 'logout'])
+    ->name('user.post.logout');
+
+Route::prefix('profiles')->group(function () {
+    Route::get('/', [MainController::class, 'profile'])
+        ->name('profiles.index');
+    Route::get('/show/{id}', [MainController::class, 'show'])
+        ->name('profiles.show');
+    Route::get('/role', [MainController::class, 'profile_role'])
+        ->name('profiles.role');
+
+});

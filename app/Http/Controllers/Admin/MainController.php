@@ -16,4 +16,13 @@ class MainController extends Controller
     }
 
 
+    public function profile()
+    {
+        return view('profile');
+    }
+
+    public function profile_role()
+    {
+        return view('profile_role');
+    }
 }
