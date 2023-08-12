@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\PostProfileController;
 use App\Http\Controllers\Admin\PostUserController;
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,21 @@ Route::post('/user/logout/', [PostUserController::class, 'logout'])
 Route::prefix('profiles')->group(function () {
     Route::get('/', [MainController::class, 'profile'])
         ->name('profiles.index');
+
+    Route::post('/create', [PostProfileController::class, 'create'])
+        ->name('create.profiles');
+
     Route::get('/show/{id}', [MainController::class, 'show'])
         ->name('profiles.show');
-    Route::get('/role', [MainController::class, 'profile_role'])
-        ->name('profiles.role');
 
+    Route::get('/products', [MainController::class, 'products'])
+        ->name('products.index');
 });
+
+Route::get('/login', [MainController::class, 'login']);
+
+Route::post('/user/code/', [PostUserController::class, 'newCode'])
+    ->name('user.code');
+
+Route::post('/user/login/', [PostUserController::class, 'login'])
+    ->name('user.post.login');
