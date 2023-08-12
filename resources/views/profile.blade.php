@@ -14,7 +14,6 @@
                         </div>
                         <div class="col-4 d-flex justify-content-end">
                             <div class="col-5">
-                                <a href="{{ route('profiles.role') }}" class="btn w-100 btn-primary">Роли</a>
                             </div>
                             <div class="col-1"></div>
                             <div class="col-5">
@@ -34,60 +33,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Админ</td>
-                            </tr>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Модератор</td>
-                            </tr>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Клиент</td>
-                            </tr>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Клиент</td>
-                            </tr>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Клиент</td>
-                            </tr>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Клиент</td>
-                            </tr>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Клиент</td>
-                            </tr>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Клиент</td>
-                            </tr>
-                            <tr>
-                                <td>Илья</td>
-                                <td>Макаров</td>
-                                <td>+7 (999) 462-12-88</td>
-                                <td>Клиент</td>
-                            </tr>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user["LastName"] }}</td>
+                                    <td>{{ $user["FirstName"] }}</td>
+                                    <td>{{ $user["Phone"] }}</td>
+                                    <td>{{ $user["Role"] }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -104,28 +57,45 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('create.profiles') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Укажите имя</label>
+                                    <input type="text" name="LastName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Укажите фамилию</label>
+                                    <input type="text" name="FirstName" class="form-control">
+                                </div>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label">Номер телефона</label>
-                            <input type="tel" class="form-control">
+                            <input type="tel" id="exampleInputTelephone" name="Phone" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Укажите роль</label>
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" name="Role" aria-label="Default select example">
                                 <option selected>Нажмите что бы выбрать</option>
                                 <option value="Администратор">Администратор</option>
-                                <option value="Модератор">Модератор</option>
                                 <option value="Клиент">Клиент</option>
                             </select>
                         </div>
-                        <div class="mb-3">
-                        <label class="form-label">Укажите пароль</label>
-                        <input type="password" class="form-control">
-                        </div>
+                      
                         <button type="submit" class="btn btn-primary">Создать</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#exampleInputTelephone")
+                .mask("+7 (999) 999-99-99");
+        });
+    </script>
 @endsection

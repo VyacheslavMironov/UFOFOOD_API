@@ -31,7 +31,7 @@
                                 <a class="nav-link active" href="{{ route('profiles.index') }}">Пользователи</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Продукция</a>
+                                <a class="nav-link active" href="{{ route('products.index') }}">Продукция</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Заказы</a>
