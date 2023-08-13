@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Domain\Services\IngridientServices;
 use App\Domain\Services\MenuCategoryServices;
 use App\Domain\Services\MenuServices;
 use App\Domain\Services\UserServices;
@@ -39,7 +40,7 @@ class MainController extends Controller
                     "FirstName" => $user->FirstName, 
                     "LastName" => $user->LastName, 
                     "Phone" => $user->Phone,
-                    "Role" => $role[0]->Name
+                    "Role" => count($role) > 0 ? $role[0]->Name : ''
                 ]
             );
         }
@@ -83,6 +84,21 @@ class MainController extends Controller
                 new ShowMenuDTO($id)
             ),
             "categoryes" => $category->actionAll()
+        ]);
+    }
+
+    public function category(MenuCategoryServices $service)
+    {
+        return view('category', [
+            "categoryes" => $service->actionAll()
+        ]);
+    }
+
+    public function ingridients(IngridientServices $service, MenuCategoryServices $serviceCategory)
+    {
+        return view('ingridients', [
+            "ingridients" => $service->actionAll(),
+            "categoryes" => $serviceCategory->actionAll()
         ]);
     }
 }

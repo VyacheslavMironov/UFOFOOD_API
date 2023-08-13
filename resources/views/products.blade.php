@@ -15,7 +15,8 @@
                         <div class="col-12 mb-4 mt-5">
                             <div class="row">
                                 <div class="col-8">
-                                    
+                                    <a href="{{ route('menu.category') }}" class="btn btn-primary">Категории</a>
+                                    <a href="{{ route('ingridient') }}" class="btn btn-primary">Ингридиенты</a>
                                 </div>
                                 <div class="col-4 d-flex justify-content-end">
                                     <a href="{{ route('products.products_create') }}" class="btn w-50 btn-success">Добавить</a>
