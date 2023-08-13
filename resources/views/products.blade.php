@@ -18,7 +18,7 @@
                                     
                                 </div>
                                 <div class="col-4 d-flex justify-content-end">
-                                    <a href="#" class="btn w-50 btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Добавить</a>
+                                    <a href="{{ route('products.products_create') }}" class="btn w-50 btn-success">Добавить</a>
                                 </div>
                             </div>
                         </div>
@@ -26,23 +26,35 @@
                             <table class="table table-bordered table-striped table-hover">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th scope="col">Изображение</th>
-                                        <th scope="col">Наименование</th>
-                                        <th scope="col">Описание</th>
-                                        <th scope="col">Тип</th>
-                                        <th scope="col">Цена</th>
+                                        <th colspan="1">Изображение</th>
+                                        <th colspan="2">Наименование</th>
+                                        <th colspan="4">Описание</th>
+                                        <th colspan="1">Тип</th>
+                                        <th colspan="1">Цена</th>
+                                        <th colspan="2"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($menus as $menu)
                                         <tr>
-                                            <td>
+                                            <td colspan="1">
                                                 <img src="{{ asset('/storage/'.$menu["Image"]) }}" alt="{{ $menu["Title"] }}" class="img-fluid">
                                             </td>
-                                            <td>{{ $menu["Title"] }}</td>
-                                            <td>{{ $menu["Description"] }}</td>
-                                            <td>{{ $menu["Category"] }}</td>
-                                            <td>{{ $menu["Price"] }} р</td>
+                                            <td colspan="2">
+                                                <a href="{{ route('products.products_update', ['id' => $menu['Id']]) }}">
+                                                    {{ $menu["Title"] }}
+                                                </a>    
+                                            </td>
+                                            <td colspan="4">{{ $menu["Description"] }}</td>
+                                            <td colspan="1">{{ $menu["Category"] }}</td>
+                                            <td colspan="1">{{ $menu["Price"] }} р</td>
+                                            <td colspan="2">
+                                                <form action="{{ route('products.delete') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="Id" value="{{ $menu["Id"] }}">
+                                                    <input type="submit" class="btn btn-danger" value="Удалить">
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

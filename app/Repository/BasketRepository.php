@@ -16,6 +16,7 @@ class BasketRepository implements IBasketRepository
         $model->MenuId = $context->MenuId;
         $model->Price = $context->Price;
         $model->Count = $context->Count;
+        $model->IngridientCode = $context->IngridientCode;
         $model->save();
         return $model;
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Domain\Services\MenuCategoryServices;
 use App\Domain\Services\MenuServices;
 use App\Domain\Services\UserServices;
+use App\DTO\Menu\ShowMenuDTO;
 use App\DTO\User\CodeUserDTO;
 use App\Http\Controllers\Controller;
 use App\Models\MenuCategory;
@@ -51,6 +52,7 @@ class MainController extends Controller
         {
             $menuCategory = $category::find($menu->CategoryId);
             array_push($arr, [
+                "Id" => $menu->id,
                 "Title" => $menu->Title,
                 "Description" => $menu->Description,
                 "Image" => $menu->Image,
@@ -60,6 +62,23 @@ class MainController extends Controller
         }
         return view('products', [
             "menus" => $arr
+        ]);
+    }
+
+    public function products_create(MenuServices $service, MenuCategoryServices $category)
+    {
+        return view('products_create', [
+            "categoryes" => $category->actionAll()
+        ]);
+    }
+
+    public function products_update(int $id, MenuServices $service, MenuCategoryServices $category)
+    {
+        return view('products_update', [
+            "menu" => $service->actionShow(
+                new ShowMenuDTO($id)
+            ),
+            "categoryes" => $category->actionAll()
         ]);
     }
 }

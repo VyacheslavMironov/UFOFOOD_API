@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\PostProductController;
 use App\Http\Controllers\Admin\PostProfileController;
 use App\Http\Controllers\Admin\PostUserController;
 /*
@@ -42,6 +43,21 @@ Route::prefix('profiles')->group(function () {
 
     Route::get('/products', [MainController::class, 'products'])
         ->name('products.index');
+
+    Route::get('/products/create', [MainController::class, 'products_create'])
+        ->name('products.products_create');
+
+    Route::get('/products/update/{id}', [MainController::class, 'products_update'])
+        ->name('products.products_update');
+        
+    Route::post('/products/create', [PostProductController::class, 'create'])
+        ->name('products.create');
+
+    Route::post('/products/update', [PostProductController::class, 'update'])
+        ->name('products.update');
+
+    Route::post('/products/delete', [PostProductController::class, 'delete'])
+        ->name('products.delete');
 });
 
 Route::get('/login', [MainController::class, 'login']);
