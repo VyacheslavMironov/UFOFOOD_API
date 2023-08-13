@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\PostCategoryController;
+use App\Http\Controllers\Admin\PostIngridientController;
 use App\Http\Controllers\Admin\PostProductController;
 use App\Http\Controllers\Admin\PostProfileController;
 use App\Http\Controllers\Admin\PostUserController;
@@ -60,7 +62,26 @@ Route::prefix('profiles')->group(function () {
         ->name('products.delete');
 });
 
-Route::get('/login', [MainController::class, 'login']);
+Route::prefix('category')->group(function () {
+    Route::get('/', [MainController::class, 'category'])
+        ->name('menu.category');
+    Route::post('/create', [PostCategoryController::class, 'create'])
+        ->name('menu.category.create');
+    Route::post('/delete', [PostCategoryController::class, 'delete'])
+        ->name('menu.category.delete');
+});
+
+Route::prefix('ingridient')->group(function () {
+    Route::get('/', [MainController::class, 'ingridients'])
+        ->name('ingridient');
+    Route::post('/ingridient/create', [PostIngridientController::class, 'create'])
+        ->name('ingridient.create');
+    Route::post('/delete', [PostIngridientController::class, 'delete'])
+        ->name('ingridient.delete');
+});
+
+Route::get('/login', [MainController::class, 'login'])
+->name('user.login');
 
 Route::post('/user/code/', [PostUserController::class, 'newCode'])
     ->name('user.code');
