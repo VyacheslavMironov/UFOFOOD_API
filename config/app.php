@@ -180,6 +180,7 @@ return [
         App\Providers\PurchasesHistoryValidationServiceProvider::class,
         App\Providers\NotificationValidationServiceProvider::class,
         App\Providers\PushUserSessionValidationServiceProvider::class,
+        App\Providers\IngridientBasketServiceProvider::class,
     ])->toArray(),
 
     /*

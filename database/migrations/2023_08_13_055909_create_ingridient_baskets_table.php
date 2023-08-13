@@ -11,22 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('baskets', function (Blueprint $table) {
+        Schema::create('ingridient_baskets', function (Blueprint $table) {
             $table->id();
-            $table->integer('UserId');
-            $table->integer('MenuId');
-            $table->float('Price');
+            $table->string('IngridientCode');
+            $table->integer('IngridientId');
             $table->integer('Count');
-            $table->string('IngridientCode')
-                ->unique();
             $table->timestamps();
-            $table->foreign('UserId')
-                ->references('id')
-                ->on('users')
+            $table->foreign('IngridientCode')
+                ->references('IngridientCode')
+                ->on('baskets')
                 ->onDelete('cascade');
-            $table->foreign('MenuId')
+            $table->foreign('IngridientId')
                 ->references('id')
-                ->on('menus')
+                ->on('ingidients')
                 ->onDelete('cascade');
         });
     }
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('baskets');
+        Schema::dropIfExists('ingridient_baskets');
     }
 };

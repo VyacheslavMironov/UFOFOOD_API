@@ -54,6 +54,14 @@ Route::prefix('ingridient')->group(function () {
         Route::post('create', [\App\Http\Controllers\Api\IngridientController::class, 'create']);
         Route::get('delete/{ingridient_id}', [\App\Http\Controllers\Api\IngridientController::class, 'delete']);
     });
+    // Ингридиенты корзины
+    Route::prefix('basket')->group(function () {
+        // Запросы с персональным токеном
+        Route::middleware('auth:sanctum')->group(function (){
+            Route::post('create', [\App\Http\Controllers\Api\IngridientBasketController::class, 'create']);
+            Route::get('show/{IngridientCode}', [\App\Http\Controllers\Api\IngridientBasketController::class, 'show']);
+        });
+    });
 });
 
 Route::prefix('basket')->group(function () {
