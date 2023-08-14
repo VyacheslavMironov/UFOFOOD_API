@@ -30,7 +30,8 @@ class BasketController extends Controller
                     $request->MenuId,
                     $request->Price,
                     $request->Count,
-                    null
+                    null,
+                    $request->Values ? $request->Values : null
                 )
             )
         ]);

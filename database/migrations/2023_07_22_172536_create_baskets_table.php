@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('Count');
             $table->string('IngridientCode')
                 ->unique();
+            $table->jsonb('Values')
+                ->nullable();
             $table->timestamps();
             $table->foreign('UserId')
                 ->references('id')
