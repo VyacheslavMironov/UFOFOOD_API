@@ -8,21 +8,18 @@ use App\DTO\PurchasesHistory\CreatePurchasesHistoryDTO;
 use App\DTO\PurchasesHistory\ShowPurchasesHistoryDTO;
 use App\DTO\PurchasesHistory\ShowByUserPurchasesHistoryDTO;
 use App\Repository\PurchasesHistoryRepository;
-use App\Domain\Services\UserServices;
+use App\DTO\PurchasesHistory\UpdateStatusPurchasesHistoryDTO;
 
 class PurchasesHistoryServices implements IPurchasesHistoryServices
 {
     private PurchasesHistoryRepository $repository;
-    private UserServices $randomString;
     public function __construct()
     {
         $this->repository = new PurchasesHistoryRepository();
-        $this->randomString = new UserServices();
     }
 
     public function CreateAction(CreatePurchasesHistoryDTO $context)
     {
-        $context->OrderCode = $this->randomString->generateRandomString($length=6, $characters='12345678900987654321');
         return $this->repository->Create($context);
     }
 
@@ -39,5 +36,10 @@ class PurchasesHistoryServices implements IPurchasesHistoryServices
     public function AllAction()
     {
         return $this->repository->All();
+    }
+
+    public function UpdateAction(UpdateStatusPurchasesHistoryDTO $context)
+    {
+        return $this->repository->Updae($context);
     }
 }

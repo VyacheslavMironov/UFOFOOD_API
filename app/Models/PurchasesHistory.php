@@ -16,7 +16,7 @@ class PurchasesHistory extends Model
      */
     protected $fillable = [
         'UserId',
-        'OrderCode',
+        'Status',
         'Price',
         'Values',
         'SetDate',

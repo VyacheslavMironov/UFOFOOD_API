@@ -1,8 +1,10 @@
 <?php
+
 namespace App\DTO\PurchasesHistory;
 
-final class CreatePurchasesHistoryDTO
+class UpdateStatusPurchasesHistoryDTO
 {
+    public int $Id;
     public int $UserId;
     public string $Status;
     public float $Price;
@@ -10,9 +12,10 @@ final class CreatePurchasesHistoryDTO
     public string $SetDate;
     public string $SetTime;
 
-    public function __construct(int $UserId, string $Status, float $Price, 
+    public function __construct(int $Id, int $UserId, string $Status, float $Price, 
                                 string $Values, string $SetDate, string $SetTime)
     {
+        $this->Id = $Id;
         $this->UserId = $UserId;
         $this->Status = $Status;
         $this->Price = $Price;

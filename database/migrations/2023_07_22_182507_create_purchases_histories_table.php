@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('purchases_histories', function (Blueprint $table) {
             $table->id();
             $table->integer('UserId');
-            $table->char('OrderCode')->unique();
+            $table->emum('Status', ['Заказ готовится', 'Курьер в пути', 'Готово']);
             $table->float('Price');
             $table->jsonb('Values');
             $table->string('SetDate');
