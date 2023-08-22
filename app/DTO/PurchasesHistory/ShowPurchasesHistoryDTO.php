@@ -3,10 +3,10 @@ namespace App\DTO\PurchasesHistory;
 
 final class ShowPurchasesHistoryDTO
 {
-    public string $Status;
+    public string $OrderCode;
 
-    public function __construct(string $Status)
+    public function __construct(string $OrderCode)
     {
-        $this->Status = $Status;
+        $this->OrderCode = $OrderCode;
     }
 }

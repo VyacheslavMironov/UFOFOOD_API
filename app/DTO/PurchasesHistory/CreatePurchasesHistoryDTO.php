@@ -4,17 +4,17 @@ namespace App\DTO\PurchasesHistory;
 final class CreatePurchasesHistoryDTO
 {
     public int $UserId;
-    public string $Status;
+    public string|null $OrderCode;
     public float $Price;
     public string $Values;
     public string $SetDate;
     public string $SetTime;
 
-    public function __construct(int $UserId, string $Status, float $Price, 
+    public function __construct(int $UserId, string|null $OrderCode, float $Price, 
                                 string $Values, string $SetDate, string $SetTime)
     {
         $this->UserId = $UserId;
-        $this->Status = $Status;
+        $this->OrderCode = $OrderCode;
         $this->Price = $Price;
         $this->Values = $Values;
         $this->SetDate = $SetDate;

@@ -5,7 +5,6 @@ use App\Domain\IRepository\IPurchasesHistoryRepository;
 use App\DTO\PurchasesHistory\CreatePurchasesHistoryDTO;
 use App\DTO\PurchasesHistory\ShowPurchasesHistoryDTO;
 use App\DTO\PurchasesHistory\ShowByUserPurchasesHistoryDTO;
-use App\DTO\PurchasesHistory\UpdateStatusPurchasesHistoryDTO;
 use App\Models\PurchasesHistory;
 
 class PurchasesHistoryRepository implements IPurchasesHistoryRepository
@@ -14,7 +13,7 @@ class PurchasesHistoryRepository implements IPurchasesHistoryRepository
     {
         $model = new PurchasesHistory();
         $model->UserId = $context->UserId;
-        $model->Status = $context->Status;
+        $model->OrderCode = $context->OrderCode;
         $model->Price = $context->Price;
         $model->Values = $context->Values;
         $model->SetDate = $context->SetDate;
@@ -25,7 +24,7 @@ class PurchasesHistoryRepository implements IPurchasesHistoryRepository
 
     public function Show(ShowPurchasesHistoryDTO $context)
     {
-        return PurchasesHistory::where('Status', $context->Status)
+        return PurchasesHistory::where('OrderCode', $context->OrderCode)
             ->latest()
             ->get();
 
@@ -41,18 +40,5 @@ class PurchasesHistoryRepository implements IPurchasesHistoryRepository
     public function All()
     {
         return PurchasesHistory::latest()->get();
-    }
-
-    public function Updae(UpdateStatusPurchasesHistoryDTO $context)
-    {
-        $model = PurchasesHistory::find($context->Id);
-        $model->UserId = $context->UserId;
-        $model->Status = $context->Status;
-        $model->Price = $context->Price;
-        $model->Values = $context->Values;
-        $model->SetDate = $context->SetDate;
-        $model->SetTime = $context->SetTime;
-        $model->save();
-        return $model;
     }
 }
